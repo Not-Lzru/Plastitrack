@@ -1,6 +1,5 @@
 const express = require('express');
 const router = express.Router();
-const { login } = require('../controllers/authController');
 const { verificarToken, verificarRol } = require('../middlewares/authMiddleware');
 
 // Ruta pública para autenticación
