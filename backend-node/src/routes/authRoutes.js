@@ -5,6 +5,8 @@ const { verificarToken, verificarRol } = require('../middlewares/authMiddleware'
 // Ruta pública para autenticación
 const { login, cambiarContrasena } = require('../controllers/authController');
 
+router.post('/login', login);
+
 // Ruta protegida de prueba (Solo requiere estar logueado)
 router.get('/perfil', verificarToken, (req, res) => {
   res.json({
