@@ -14,6 +14,15 @@ const pool = mysql.createPool({
   waitForConnections: true,
   connectionLimit: 10,
   queueLimit: 0,
+  enableKeepAlive: true,
+  keepAliveInitialDelay: 0,
+});
+
+pool.on('error', (err) => {
+  console.error('Error inesperado en el pool de MySQL:', err);
+  if (err.code === 'PROTOCOL_CONNECTION_LOST') {
+    console.warn('La conexión con la base de datos se perdió. El pool intentará reconectar.');
+  }
 });
 
 // Función para verificar la conexión al iniciar el servidor
