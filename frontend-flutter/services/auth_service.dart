@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'dart:async';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../config/api_config.dart';
 
@@ -18,7 +19,7 @@ class AuthService {
           'nombre_completo': username,
           'contrasena': password,
         }),
-      );
+      ).timeout(ApiConfig.timeoutDuration);
 
       final data = jsonDecode(response.body);
 
@@ -50,6 +51,11 @@ class AuthService {
           'message': data['error'] ?? data['mensaje'] ?? 'Credenciales incorrectas'
         };
       }
+    } on TimeoutException {
+      return {
+        'success': false,
+        'message': 'El servidor en la nube está despertando. Por favor, intenta iniciar sesión nuevamente en unos segundos.'
+      };
     } catch (e) {
       return {
         'success': false,
