@@ -45,7 +45,17 @@ class _LoginScreenState extends State<LoginScreen> {
       _isLoading = true;
     });
 
-    // Delegamos la autenticación al AuthService que ya tiene los nombres exactos
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(
+          'Conectando al servidor (puede tardar unos segundos si está inactivo)...',
+          style: GoogleFonts.inter(fontSize: 13, color: Colors.white),
+        ),
+        backgroundColor: Colors.orangeAccent,
+        duration: const Duration(seconds: 3),
+      ),
+    );
+
     final result = await AuthService.login(usuario, password);
 
     if (!mounted) return;
