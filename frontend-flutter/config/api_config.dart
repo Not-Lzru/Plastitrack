@@ -11,6 +11,8 @@ class ApiConfig {
   static const String _ipLaptop = '000.000.000.000';
   static const String _puerto = '3000';
 
+  static const Duration timeoutDuration = Duration(seconds: 60);
+
   static String get baseUrl {
     if (_usarTunnel) {
       return _urlTunnel;
