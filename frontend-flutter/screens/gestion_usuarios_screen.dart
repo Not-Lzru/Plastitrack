@@ -696,7 +696,7 @@ class _HeaderBar extends StatelessWidget implements PreferredSizeWidget {
                 const SizedBox(width: 12),
                 Expanded(
                   child: Text(
-                    'Historial y Reportes',
+                    'Gestión de Usuarios',
                     style: GoogleFonts.inter(
                       fontSize: 18,
                       fontWeight: FontWeight.w600,
